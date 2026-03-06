@@ -1,0 +1,38 @@
+INFO:     Started server process [19100]
+INFO:     Waiting for application startup.
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/./modules.json
+Retrying in 1s [Retry 1/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/./modules.json
+Retrying in 2s [Retry 2/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/./modules.json
+Retrying in 4s [Retry 3/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/./modules.json
+Retrying in 8s [Retry 4/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/./modules.json
+Retrying in 8s [Retry 5/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/./modules.json
+No sentence-transformers model found with name BAAI/bge-large-zh-v1.5. Creating a new one with mean pooling.
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/adapter_config.json
+Retrying in 1s [Retry 1/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/adapter_config.json
+Retrying in 2s [Retry 2/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/adapter_config.json
+Retrying in 4s [Retry 3/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/adapter_config.json
+Retrying in 8s [Retry 4/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/adapter_config.json
+Retrying in 8s [Retry 5/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/adapter_config.json
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/config.json
+Retrying in 1s [Retry 1/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/config.json
+Retrying in 2s [Retry 2/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/config.json
+Retrying in 4s [Retry 3/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/config.json
+Retrying in 8s [Retry 4/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/config.json
+Retrying in 8s [Retry 5/5].
+'[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。' thrown while requesting HEAD https://huggingface.co/BAAI/bge-large-zh-v1.5/resolve/main/config.json
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

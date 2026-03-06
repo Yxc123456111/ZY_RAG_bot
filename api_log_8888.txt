@@ -1,0 +1,64 @@
+
+    ===========================================================
+    
+               TCM Chatbot v1.0.0
+    
+       RAG + Relational Database TCM Knowledge QA System
+    
+    ===========================================================
+    
+[OK] Directories initialized
+[OK] Dependencies check passed
+
+[START] Starting API server...
+   URL: http://0.0.0.0:8888
+   Docs: http://0.0.0.0:8888/docs
+[INIT] Initializing TCM Chatbot...
+[INIT] Vector store loaded: {'mode': 'local', 'total_documents': 0, 'collection_name': 'tcm_knowledge', 'dimension': 128}
+[INIT] Initialization completed!
+INFO:     127.0.0.1:53048 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63054 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63054 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:55404 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56727 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52670 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56279 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60895 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55199 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50249 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64646 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62392 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55940 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55957 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50670 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50183 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63211 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62823 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56250 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54401 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60890 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49595 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63133 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54360 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60410 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56633 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55298 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55316 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55319 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55311 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55330 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62321 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51230 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60462 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62732 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57281 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57298 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57308 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64777 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55224 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55250 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55286 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55327 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50168 - "POST /chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60754 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49305 - "POST /chat HTTP/1.1" 200 OK

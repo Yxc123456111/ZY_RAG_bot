@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # MySQL数据库
+  mysql:
+    image: mysql:8.0
+    container_name: tcm_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: tcm_password
+      MYSQL_DATABASE: tcm_chatbot
+      MYSQL_USER: tcm_user
+      MYSQL_PASSWORD: tcm_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - tcm_network
+
+  # 中医聊天机器人API服务
+  tcm-api:
+    build: .
+    container_name: tcm_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://tcm_user:tcm_password@mysql:3306/tcm_chatbot
+      - CHROMA_PERSIST_DIRECTORY=./data/vector_db
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    depends_on:
+      - mysql
+    networks:
+      - tcm_network
+    command: python main.py --api --host 0.0.0.0 --port 8000
+
+  # Web界面服务
+  tcm-web:
+    build: .
+    container_name: tcm_web
+    restart: unless-stopped
+    ports:
+      - "7860:7860"
+    environment:
+      - API_URL=http://tcm-api:8000
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - tcm-api
+    networks:
+      - tcm_network
+    command: python main.py --web
+
+volumes:
+  mysql_data:
+
+networks:
+  tcm_network:
+    driver: bridge

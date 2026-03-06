@@ -1,0 +1,112 @@
+# 中医聊天机器人环境变量配置
+
+# ============================================
+# 数据库配置
+# ============================================
+
+# 关系型数据库 (MySQL/PostgreSQL/SQLite)
+# MySQL示例: mysql+pymysql://user:password@localhost:3306/tcm_chatbot
+# PostgreSQL示例: postgresql://user:password@localhost:5432/tcm_chatbot
+# SQLite示例: sqlite:///./data/tcm_chatbot.db
+DATABASE_URL=sqlite:///./data/tcm_chatbot.db
+
+# 数据库连接池配置
+DB_POOL_SIZE=10
+DB_MAX_OVERFLOW=20
+
+# ============================================
+# LLM API配置
+# ============================================
+
+# OpenAI API
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_BASE_URL=https://api.openai.com/v1
+
+# Azure OpenAI (可选)
+# AZURE_OPENAI_API_KEY=your_azure_key
+# AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
+# AZURE_OPENAI_API_VERSION=2023-05-15
+
+# 其他兼容API (如智谱、文心等)
+# ZHIPU_API_KEY=your_zhipu_key
+# WENXIN_API_KEY=your_wenxin_key
+
+# ============================================
+# 向量数据库配置
+# ============================================
+
+# Chroma配置
+CHROMA_PERSIST_DIRECTORY=./data/vector_db
+CHROMA_COLLECTION_NAME=tcm_knowledge
+
+# Milvus配置 (可选)
+# MILVUS_HOST=localhost
+# MILVUS_PORT=19530
+# MILVUS_COLLECTION_NAME=tcm_knowledge
+
+# 嵌入模型
+EMBEDDING_MODEL=BAAI/bge-large-zh-v1.5
+EMBEDDING_DEVICE=cpu
+
+# ============================================
+# 应用配置
+# ============================================
+
+# API服务器
+API_HOST=0.0.0.0
+API_PORT=8000
+API_DEBUG=true
+
+# Web界面
+WEB_HOST=0.0.0.0
+WEB_PORT=7860
+
+# 日志级别 (DEBUG, INFO, WARNING, ERROR)
+LOG_LEVEL=INFO
+
+# ============================================
+# 安全配置
+# ============================================
+
+# JWT密钥
+SECRET_KEY=your-secret-key-here-change-in-production
+
+# 访问令牌过期时间（分钟）
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+# ============================================
+# 功能开关
+# ============================================
+
+# 启用/禁用模块
+ENABLE_ACUPUNCTURE=true
+ENABLE_HERB=true
+ENABLE_SHANGHAN=true
+ENABLE_JINKUI=true
+ENABLE_DIAGNOSIS=true
+
+# 启用RAG重排序
+ENABLE_RERANK=true
+RERANK_MODEL=BAAI/bge-reranker-large
+
+# ============================================
+# Supabase 配置 (中药查询功能)
+# ============================================
+
+# Supabase Project URL
+# 格式: https://your-project-id.supabase.co
+SUPABASE_URL=https://urxupwzffnpexsgquqzz.supabase.co
+
+# Supabase Publishable Key (anon/public key)
+# 注意：这是客户端使用的公钥，不是服务密钥
+SUPABASE_KEY=sb_publishable_MT_RSVcH8wq4lNHcNQwLJw_zDUPCOQL
+
+# ============================================
+# 开发配置
+# ============================================
+
+# 热重载
+RELOAD=false
+
+# 测试模式
+TESTING=false

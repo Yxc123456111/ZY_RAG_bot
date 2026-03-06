@@ -1,0 +1,172 @@
+结合你提供的两张参考图（目标深色风格界面 vs 当前浅色中医助手界面），要完成整体样式迁移，需要从主题、布局、组件样式、颜色体系四个核心维度进行代码修改。以下是结构化的修改清单，包含具体代码位置和替换方案，可直接落地执行：
+一、核心主题与基础颜色修改（全局生效）
+目标：将当前 flatly（浅色）主题切换为深色主题，并统一主色调为深蓝色 / 黑色系，匹配目标界面的暗黑风格。
+修改位置	原代码	新代码	说明
+__init__ 主题初始化	self.style = ttkb.Style(theme="flatly")	self.style = ttkb.Style(theme="darkly")	切换为 darkly 深色主题，是最接近目标界面的官方主题
+主窗口背景	依赖主题默认	self.root.configure(bg="#1E1E2E")	强制主窗口为深灰蓝，匹配目标界面的底色
+API 客户端初始化	无	在 __init__ 中添加：
+self.PRIMARY_COLOR = "#2563EB"
+self.BG_COLOR = "#1E1E2E"
+self.CARD_BG = "#2D2D3F"
+self.TEXT_COLOR = "#E2E8F0"	定义统一的颜色常量，后续组件直接调用
+二、左侧边栏布局与样式修改（核心结构调整）
+目标：将当前 “分散式按钮 + 列表” 改为目标界面的顶部新建按钮 + 分类菜单（COURSES/TRY ASKING） + 底部功能区的垂直深色导航栏。
+1. 整体容器样式
+修改 _create_sidebar 中侧边栏容器：
+python
+运行
+# 原代码
+self.sidebar = ttkb.Frame(self.main_container, width=280)
+# 新代码
+self.sidebar = ttkb.Frame(self.main_container, width=280, bootstyle="dark", bg=self.BG_COLOR)
+self.sidebar.configure(bg=self.BG_COLOR)  # 强制深色背景
+2. 顶部 “新建对话” 按钮重构（匹配目标 +NEW CHAT）
+替换原标题 + 加号按钮的布局，改为通栏深色按钮：
+python
+运行
+# 移除原标题标签和小加号按钮，替换为：
+new_chat_btn = ttkb.Button(
+    header,
+    text="+ NEW CHAT",
+    bootstyle="primary-outline",  # 深色主题下的边框按钮
+    command=self._new_conversation,
+    width=20
+)
+new_chat_btn.pack(fill=X, pady=5)
+3. 分类菜单重构（匹配 COURSES / TRY ASKING）
+删除原 “快捷查询” 按钮组，改为折叠式分类菜单（核心修改）：
+python
+运行
+# 替换原 quick_frame 区域，添加分类标题+子选项
+# 1. COURSES 分类
+course_label = ttkb.Label(
+    self.sidebar,
+    text="COURSES",
+    font=("Microsoft YaHei", 10, "bold"),
+    bootstyle="light",  # 浅色文字
+    bg=self.BG_COLOR
+)
+course_label.pack(anchor="w", padx=15, pady=(10, 5))
+
+# 2. TRY ASKING 分类（带下拉箭头）
+try_asking_frame = ttkb.Frame(self.sidebar, bg=self.BG_COLOR)
+try_asking_frame.pack(fill=X, padx=15, pady=5)
+
+ttkb.Label(
+    try_asking_frame,
+    text="▶ TRY ASKING:",
+    font=("Microsoft YaHei", 10, "bold"),
+    bootstyle="primary",  # 蓝色文字匹配目标
+    bg=self.BG_COLOR
+).pack(side=LEFT)
+
+# 子选项（示例：穴位查询/中药查询）
+sub_menu = ttkb.Frame(self.sidebar, bg=self.BG_COLOR)
+sub_menu.pack(fill=X, padx=25, pady=2)
+ttkb.Button(
+    sub_menu,
+    text="穴位查询",
+    bootstyle="link",  # 无背景链接式按钮，匹配目标
+    command=self._quick_acupuncture,
+    bg=self.BG_COLOR
+).pack(fill=X, anchor="w")
+4. 底部功能区（匹配目标底部布局）
+删除原 “知识查询 / 设置” 按钮，改为通栏深色按钮，并移除 API 状态的文字提示，改为绿色小圆点：
+python
+运行
+# 替换原 bottom_frame，改为通栏按钮
+for text, command in [("知识查询", self._show_knowledge), ("设置", self._show_settings)]:
+    btn = ttkb.Button(
+        self.sidebar,
+        text=text,
+        bootstyle="dark-outline",
+        command=command,
+        bg=self.BG_COLOR
+    )
+    btn.pack(fill=X, padx=15, pady=2)
+
+# API状态改为“绿色小圆点”（匹配目标无文字提示）
+status_canvas = tk.Canvas(self.api_status_frame, width=10, height=10, bg=self.BG_COLOR, highlightthickness=0)
+status_canvas.create_oval(0,0,10,10, fill="green" if status_ok else "red")
+status_canvas.pack(side=LEFT)
+# 移除原 api_status_label 文字
+三、右侧聊天区域修改（核心视觉匹配）
+目标：将当前 “白色气泡 + 浅灰背景” 改为目标界面的深色圆角气泡 + 纯黑聊天区 + 底部通栏输入框。
+1. 聊天区整体背景
+修改 _create_chat_area 中聊天容器：
+python
+运行
+self.chat_container = ttkb.Frame(self.main_container, bg=self.BG_COLOR)
+2. 移除顶部标题栏（目标界面无聊天标题）
+删除原 header_container、chat_header 相关代码，让聊天区直接顶栏显示。
+3. 消息气泡样式重构（核心：深色圆角 + 无头像）
+修改 _add_message_to_display 方法，删除 AI 头像，并将气泡改为深色圆角矩形：
+python
+运行
+# 1. 通用修改：移除所有头像相关代码（avatar_frame/avatar_bg/avatar）
+# 2. AI消息气泡（匹配目标助手消息）
+bubble = ttkb.Frame(content_frame, bootstyle="dark", bg=self.CARD_BG)
+bubble.pack(side=LEFT, padx=(20, 60))
+# 添加圆角（ttkbootstrap 需通过样式配置）
+self.style.configure("Bubble.TFrame", background=self.CARD_BG, relief="rounded", borderwidth=0)
+bubble.configure(style="Bubble.TFrame")
+
+# 消息文本颜色改为浅色
+content = ttkb.Label(
+    bubble,
+    text=msg.content,
+    wraplength=550,
+    justify=LEFT,
+    font=("Microsoft YaHei", 11),
+    foreground=self.TEXT_COLOR,  # 浅色文字
+    bg=self.CARD_BG
+)
+4. 底部输入框重构（匹配目标通栏 + 蓝色发送按钮）
+替换原 _create_input_area 中的输入框样式，改为深色通栏无外框 + 圆形蓝色发送按钮：
+python
+运行
+# 1. 移除原白色外框、渐进色分隔线，改为深色背景
+input_outer = tk.Frame(self.chat_container, bg=self.BG_COLOR)
+# 2. 输入框改为深色背景、浅色文字
+self.input_text = tk.Text(
+    input_frame,
+    height=3,
+    font=("Microsoft YaHei", 12),
+    bg=self.CARD_BG,  # 输入框深色背景
+    fg=self.TEXT_COLOR,  # 浅色文字
+    insertbackground=self.PRIMARY_COLOR,
+    relief=FLAT
+)
+# 3. 发送按钮改为**圆形蓝色按钮**（替换原矩形按钮）
+send_btn = ttkb.Button(
+    input_frame,
+    text="➤",  # 箭头图标匹配目标
+    bootstyle="primary",
+    command=self._send_message,
+    width=3,  # 圆形适配宽度
+    style="Round.TButton"
+)
+# 配置圆形按钮样式
+self.style.configure("Round.TButton", borderradius=20)
+四、其他关键细节修改
+移除会话列表：目标界面左侧无 “历史对话列表”，需删除 conversation_list 相关的所有代码（_refresh_conversation_list/_create_conversation_item 等方法可直接删除）。
+欢迎消息样式：修改 _create_welcome_conversation 中的欢迎语，改为英文 / 简洁中文，匹配目标 Welcome to the Course Materials Assistant! 的样式。
+滚动条样式：将所有 ScrolledFrame 的滚动条改为深色主题适配：
+python
+运行
+self.message_area = ScrolledFrame(self.chat_container, autohide=True, bootstyle="dark")
+总结：修改优先级
+高优先级：主题切换（darkly）+ 全局颜色常量定义 + 侧边栏结构重构（新建按钮 + 分类菜单）+ 消息气泡深色化。
+中优先级：移除聊天标题栏 + 输入框通栏深色化 + 圆形发送按钮。
+低优先级：移除会话列表 + 状态提示改为小圆点 + 文字样式统一。
+按照以上清单逐块替换代码，即可完全将中医助手界面调整为目标图片的深色风格样式。需要我将这些修改整合为完整的代码文件，方便你直接覆盖使用吗？
+
+
+
+
+
+
+
+如何将代码中的主窗口背景颜色改为其他颜色？
+除了提供的修改清单，还有其他方法可以将第二个图片调整为第一个图片的样式吗？
+修改代码后如何运行程序？
